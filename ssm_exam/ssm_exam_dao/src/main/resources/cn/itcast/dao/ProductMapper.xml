@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.ProductMapper">
+    <!--查询所有产品-->
+    <select id="findAllProduct" resultType="cn.itcast.pojo.Product">
+        select * from product
+    </select>
+
+    <insert id="saveProduct" parameterType="cn.itcast.pojo.Product">
+         insert into product values(sys_guid(),#{productNum},#{productName},#{cityName},#{departureTime},#{productPrice},#{productDesc},#{productStatus})
+    </insert>
+
+    <select id="findProductById" parameterType="String" resultType="cn.itcast.pojo.Product">
+        select * from product where id=#{id}
+    </select>
+</mapper>
+

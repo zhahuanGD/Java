@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam.iml" filepath="$PROJECT_DIR$/ssm_exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam_dao/ssm_exam_dao.iml" filepath="$PROJECT_DIR$/ssm_exam_dao/ssm_exam_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam_pojo/ssm_exam_pojo.iml" filepath="$PROJECT_DIR$/ssm_exam_pojo/ssm_exam_pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam_service/ssm_exam_service.iml" filepath="$PROJECT_DIR$/ssm_exam_service/ssm_exam_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam_utils/ssm_exam_utils.iml" filepath="$PROJECT_DIR$/ssm_exam_utils/ssm_exam_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_exam_web/ssm_exam_web.iml" filepath="$PROJECT_DIR$/ssm_exam_web/ssm_exam_web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.RoleMapper">
+    <!--根据用户编号查询角色信息-->
+    <!--<select id="findRoleByUserId" parameterType="String" resultType="cn.itcast.pojo.Role">-->
+    <!--select r.* from role r left join userinfo_role ur on r.id=ur.roleid where ur.userid=#{userid}-->
+    <!--</select>-->
+
+    <resultMap id="role_permission" type="cn.itcast.pojo.Role">
+        <id property="id" column="id"></id>
+        <result property="roleName" column="rolename"></result>
+        <result property="roleDesc" column="roledesc"></result>
+        <!--关联资源表-->
+        <collection property="permissions"
+                    column="id"
+                    ofType="cn.itcast.pojo.Permission"
+                    select="cn.itcast.dao.PermissionMapper.findPermissionByRoleId">
+        </collection>
+    </resultMap>
+
+    <select id="findRoleByUserId" parameterType="String" resultMap="role_permission">
+        select r.* from role r left join userinfo_role ur on r.id=ur.roleid where ur.userid=#{userid}
+    </select>
+
+    <select id="findRoleAll" resultType="cn.itcast.pojo.Role">
+        select * from role
+    </select>
+
+    <insert id="saveRole" parameterType="cn.itcast.pojo.Role">
+          insert into role(rolename,roledesc) values(#{roleName},#{roleDesc})
+    </insert>
+
+    <resultMap id="userinfo_role" type="cn.itcast.pojo.Role">
+        <id property="id" column="id"></id>
+        <result property="roleName" column="rolename"></result>
+        <result property="roleDesc" column="roledesc"></result>
+
+        <collection property="users" column="id" ofType="cn.itcast.pojo.UserInfo"
+                    select="cn.itcast.dao.UserInfoMapper.findUserInfoById"></collection>
+    </resultMap>
+    <select id="findByRoleId" parameterType="String" resultMap="userinfo_role">
+        select * from role where id=#{id}
+    </select>
+
+    <select id="findOtherRole" parameterType="String" resultType="cn.itcast.pojo.Role">
+      select * from role where id not in( select roleId from userinfo_role where userId=#{userid})
+    </select>
+</mapper>

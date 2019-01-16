@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.PermissionMapper">
+    <!--根据用户编号查询角色信息-->
+    <select id="findPermissionByRoleId" parameterType="String"
+            resultType="cn.itcast.pojo.Permission">
+        select p.* from permission p left join role_permission rp
+        on p.id=rp.permissionid where rp.roleid=#{roleId}
+    </select>
+
+    <select id="findPermissionAll" resultType="cn.itcast.pojo.Permission">
+        select * from PERMISSION
+    </select>
+
+    <insert id="savePermission" parameterType="cn.itcast.pojo.Permission">
+         insert into permission(permissionname,url) values(#{permissionName},#{url})
+    </insert>
+
+    <select id="findOtherPermission" parameterType="String" resultType="cn.itcast.pojo.Permission">
+        select * from permission where id not in (select permissionId from role_permission where roleId = #{roleId})
+    </select>
+</mapper>

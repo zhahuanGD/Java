@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.SysLogMapper">
+    <!--添加日志-->
+    <insert id="saveSysLog" parameterType="cn.itcast.pojo.SysLog">
+        insert into syslog(visitTime,username,ip,url,executionTime,method)
+        values(#{visitTime},#{username},#{ip},#{url},#{executionTime},#{method})
+    </insert>
+
+    <select id="findLogAll" resultType="cn.itcast.pojo.SysLog">
+        select * from syslog
+    </select>
+</mapper>

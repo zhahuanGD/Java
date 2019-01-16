@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.UserInfoMapper">
+
+    <resultMap id="userinfo_role" type="cn.itcast.pojo.UserInfo">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="email" column="email"></result>
+        <result property="password" column="password"></result>
+        <result property="phoneNum" column="phonenum"></result>
+        <result property="status" column="status"></result>
+        <!--多对多映射role-->
+        <collection property="roles"
+                    column="id"
+                    ofType="cn.itcast.pojo.Role"
+                    select="cn.itcast.dao.RoleMapper.findRoleByUserId"></collection>
+    </resultMap>
+    <select id="findUserInfoByName" parameterType="String" resultMap="userinfo_role">
+        select * from userinfo where username = #{userName}
+    </select>
+
+    <select id="findAllUser" resultType="cn.itcast.pojo.UserInfo">
+        select * from userinfo
+    </select>
+
+    <insert id="saveUserInfo" parameterType="cn.itcast.pojo.UserInfo">
+        insert into userinfo (email ,username,password,phoneNum,status)
+        values(#{email},#{username},#{password},#{phoneNum},#{status})
+    </insert>
+
+    <resultMap id="userinfo_role1" type="cn.itcast.pojo.UserInfo">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="email" column="email"></result>
+        <result property="password" column="password"></result>
+        <result property="phoneNum" column="phonenum"></result>
+        <result property="status" column="status"></result>
+        <!--多对多映射role-->
+        <collection property="roles"
+                    column="id"
+                    ofType="cn.itcast.pojo.Role"
+                    select="cn.itcast.dao.RoleMapper.findRoleByUserId"></collection>
+    </resultMap>
+
+    <select id="findUserById" parameterType="String" resultMap="userinfo_role1">
+      select * from userinfo where id=#{id}
+    </select>
+
+    <select id="findUserInfoById" parameterType="String" resultType="cn.itcast.pojo.UserInfo">
+         select * from userinfo u left join userinfo_role ur on u.id=ur.userid where ur.roleid=#{roleid}
+    </select>
+
+
+</mapper>

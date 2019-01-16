@@ -1,0 +1,10 @@
+cn\itcast\dao\PermissionMapper.class
+cn\itcast\dao\RoleMapper.class
+cn\itcast\dao\UserInfoMapper.class
+cn\itcast\dao\ProductMapper.class
+cn\itcast\dao\OrdersMapper.class
+cn\itcast\dao\SysLogMapper.class
+cn\itcast\dao\MemberMapper.class
+cn\itcast\dao\RolePermissionMapper.class
+cn\itcast\dao\UserInfoRoleMapper.class
+cn\itcast\dao\TravellerMapper.class

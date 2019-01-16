@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.dao.UserInfoRoleMapper">
+    <!--将用户和角色id添加到关联表中-->
+    <insert id="saveUserInfoRole">
+        insert into userinfo_role values(#{userid},#{roleid})
+    </insert>
+</mapper>
